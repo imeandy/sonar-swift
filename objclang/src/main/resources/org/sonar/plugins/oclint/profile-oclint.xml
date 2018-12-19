@@ -25,6 +25,10 @@
         </rule>
         <rule>
             <repositoryKey>OCLint</repositoryKey>
+            <key>compiler warning</key>
+        </rule>
+        <rule>
+            <repositoryKey>OCLint</repositoryKey>
             <key>collapsible if statements</key>
         </rule>
         <rule>
