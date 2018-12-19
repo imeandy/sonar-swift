@@ -36,6 +36,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LizardReportParser {
     private static final Logger LOGGER = LoggerFactory.getLogger(LizardReportParser.class);
@@ -153,6 +154,10 @@ public class LizardReportParser {
     }
 
     private void addComplexityFunctionMeasures(SwiftFunction component, NodeList values) {
+//    	LOGGER.info("--------------");
+//    	LOGGER.info("name: {}", component.name);
+//    	LOGGER.info("file: {}", component.file);
+//    	LOGGER.info("key: {}", component.key);
         int complexity = Integer.parseInt(values.item(cyclomaticComplexityIndex).getTextContent());
         context.<Integer>newMeasure()
             .on(component)
@@ -177,9 +182,15 @@ public class LizardReportParser {
         public SwiftFunction(String name) {
             String[] vals = name.split(" ");
             if(vals.length >= 3){
-                this.name = vals[0].substring(0,vals[0].indexOf("("));
-                this.file = vals[2].substring(0,vals[2].lastIndexOf(":"));
-                this.lineNumber = Integer.parseInt(vals[2].substring(vals[2].lastIndexOf(":")+1));
+            	String fullPath = vals[vals.length-1];
+            	ArrayList<String> methodNames = new ArrayList<String>();
+            	for (int i=0; i< vals.length-2; i++) {
+            		methodNames.add(vals[i]);
+            	}
+            	String methodName = String.join("", methodNames);
+                this.name = methodName.substring(0,methodName.indexOf("("));
+                this.file = fullPath.substring(0, fullPath.lastIndexOf(":"));
+                this.lineNumber = Integer.parseInt(fullPath.substring(fullPath.lastIndexOf(":")+1));
                 this.key = file.substring(0,file.lastIndexOf('.')+1)+name;
             }else{
                 this.key = name;
