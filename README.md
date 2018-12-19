@@ -7,6 +7,31 @@
 | master | [![Build Status](https://travis-ci.org/Backelite/sonar-swift.svg?branch=master)](https://travis-ci.org/Backelite/sonar-swift)  |
 | develop| [![Build Status](https://travis-ci.org/Backelite/sonar-swift.svg?branch=develop)](https://travis-ci.org/Backelite/sonar-swift) |
 
+Forked From sonar-swift
+================================
+
+### 0.4.3 CHANGELOG
+
+```Passed On MacOS 10.14.1```
+
+- Supported SonarQube Community Version 7.4
+- Fixed: compiler warning error
+- Fixed: Lizard parser error. because of wrong lizard xml report format
+- Fixed: OCLint Parser error. can not find file caused null pointer exception
+- Fixed: Slather Parser error. can not find file caused null pointer exception
+
+### Prerequisites
+
+- a Mac with Xcode 9 or +
+- [SonarQube](https://docs.sonarqube.org/display/SONAR/Setup+and+Upgrade) and [SonarQube Scanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner)
+- [xcpretty](https://github.com/supermarin/xcpretty) (see instructions below)
+- [SwiftLint](https://github.com/realm/SwiftLint) ([HomeBrew](http://brew.sh) installed and ```brew install swiftlint```). Version 0.3.0 or above.
+- [Tailor](https://github.com/sleekbyte/tailor) ([HomeBrew](http://brew.sh) installed and ```brew install tailor```). Version 0.11.1 or above.
+- [slather](https://github.com/SlatherOrg/slather) (```gem install slather```). Version 2.1.0 or above (2.4 since Xcode 8.3).
+- [lizard](https://github.com/terryyin/lizard) ([PIP](https://pip.pypa.io/en/stable/installing/) installed and ```sudo pip install lizard```)
+- [OCLint](http://oclint-docs.readthedocs.io/en/stable/) installed. Version 0.13.0 recommended (0.13.0 since Xcode 9).
+
+
 SonarQube Plugin for Swift
 ================================
 
