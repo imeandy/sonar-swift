@@ -440,7 +440,7 @@ if [ "$oclint" = "on" ] && [ "$hasObjC" = "yes" ]; then
         echo -n "Path included in oclint analysis is:$includedCommandLineFlags"
     fi
 		# Run OCLint with the right set of compiler options
-    runCommand no oclint-json-compilation-database -v $includedCommandLineFlags $excludedFromOCLint -- -rc LONG_LINE=$longLineThreshold -rc LONG_VARIABLE_NAME=$longVariableThreshold -rc TOO_MANY_METHODS=$methodCountThreshold -disable-rule UnusedMethodParameter -max-priority-1 $maxPriority -max-priority-2 $maxPriority -max-priority-3 $maxPriority -report-type pmd -o sonar-reports/$(echo $word | sed 's/\//_/g')-oclint.xml
+    runCommand no oclint-json-compilation-database -v $includedCommandLineFlags $excludedFromOCLint -- -rc LONG_LINE=$longLineThreshold -rc LONG_VARIABLE_NAME=$longVariableThreshold -rc TOO_MANY_METHODS=$methodCountThreshold -disable-rule UnusedMethodParameter -disable-rule AssignIvarOutsideAccessors -max-priority-1 $maxPriority -max-priority-2 $maxPriority -max-priority-3 $maxPriority -report-type pmd -o sonar-reports/$(echo $word | sed 's/\//_/g')-oclint.xml
 
 	done < tmpFileRunSonarSh
 	rm -rf tmpFileRunSonarSh
