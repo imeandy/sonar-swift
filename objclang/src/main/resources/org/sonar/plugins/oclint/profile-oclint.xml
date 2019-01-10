@@ -291,5 +291,9 @@
             <repositoryKey>OCLint</repositoryKey>
             <key>compiler error</key>
         </rule>
+        <rule>
+            <repositoryKey>OCLint</repositoryKey>
+            <key>avoid private static members</key>
+        </rule>
     </rules>
 </profile>

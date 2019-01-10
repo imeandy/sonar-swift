@@ -578,3 +578,11 @@ Summary: Name: compiler error
 
 Severity: 3
 Category: OCLint
+
+avoid private static members
+----------
+
+Summary: Name: avoid private static members
+
+Severity: 3
+Category: OCLint
