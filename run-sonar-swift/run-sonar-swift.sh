@@ -218,7 +218,7 @@ tailorConfiguration=''; readParameter tailorConfiguration 'sonar.swift.tailor.co
 excludedPathsFromCoverage=''; readParameter excludedPathsFromCoverage 'sonar.swift.excludedPathsFromCoverage'
 
 # The file patterns to exclude from oclint report
-# excludedPathsFromOCLint=''; readParameter excludedPathsFromOCLint 'sonar.swift.excludedPathsFromOCLint'
+excludedPathsFromOCLint=''; readParameter excludedPathsFromOCLint 'sonar.swift.excludedPathsFromOCLint'
 
 # Check for mandatory parameters
 if [ -z "$projectFile" -o "$projectFile" = " " ] && [ -z "$workspaceFile" -o "$workspaceFile" = " " ]; then
@@ -417,7 +417,7 @@ if [ "$oclint" = "on" ] && [ "$hasObjC" = "yes" ]; then
 
 	# Options
 	maxPriority=10000
-  longLineThreshold=120
+  	longLineThreshold=120
 	longVariableThreshold=30
 	methodCountThreshold=50
 
@@ -425,10 +425,13 @@ if [ "$oclint" = "on" ] && [ "$hasObjC" = "yes" ]; then
 	currentDirectory=${PWD##*/}
 	excludedFromOCLint = ""
 
- # 	if [[ "$excludedPathsFromOCLint" != "" ]]; then
-	# 	echo "Excluded paths from OCLint are: $excludedPathsFromOCLint"
-	# 	excludedFromOCLint=" --exclude $excludedPathsFromOCLint"
-	# fi
+	if [ ! -z "$excludedPathsFromOCLint" -a "$excludedPathsFromOCLint" != " " ]; then
+			echo $excludedPathsFromOCLint | sed -n 1'p' | tr ',' '\n' > tmpFileRunSonarSh3
+			while read word; do
+					excludedFromOCLint+=" -e $word"
+			done < tmpFileRunSonarSh3
+			rm -rf tmpFileRunSonarSh3
+	fi
 
 	echo "$srcDirs" | sed -n 1'p' | tr ',' '\n' > tmpFileRunSonarSh
 
