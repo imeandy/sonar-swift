@@ -376,7 +376,7 @@ if [ "$swiftlint" = "on" ]; then
 		while read word; do
 
 			# Run SwiftLint command
-		    $SWIFTLINT_CMD lint --path "$word" > sonar-reports/"$(echo $word | sed 's/\//_/g')"-swiftlint.txt
+		    $SWIFTLINT_CMD lint --path "$word" > sonar-reports/"$(echo $word | sed 's/\//_/g' | sed 's/\./a/g')"-swiftlint.txt
 
 		done < tmpFileRunSonarSh
 		rm -rf tmpFileRunSonarSh
@@ -399,7 +399,7 @@ if [ "$tailor" = "on" ]; then
 		while read word; do
 
 			  # Run tailor command
-		    $TAILOR_CMD $tailorConfiguration "$word" > sonar-reports/"$(echo $word | sed 's/\//_/g')"-tailor.txt
+		    $TAILOR_CMD $tailorConfiguration "$word" > sonar-reports/"$(echo $word | sed 's/\//_/g' | sed 's/\./a/g')"-tailor.txt
 
 		done < tmpFileRunSonarSh
 		rm -rf tmpFileRunSonarSh
@@ -417,9 +417,10 @@ if [ "$oclint" = "on" ] && [ "$hasObjC" = "yes" ]; then
 
 	# Options
 	maxPriority=10000
-  	longLineThreshold=120
+  longLineThreshold=120
 	longVariableThreshold=30
 	methodCountThreshold=50
+	methodLinesThreshold=80
 
 	# Build the --include flags
 	currentDirectory=${PWD##*/}
@@ -437,13 +438,13 @@ if [ "$oclint" = "on" ] && [ "$hasObjC" = "yes" ]; then
 
 	while read word; do
 
-		includedCommandLineFlags=" --include .*/${currentDirectory}/${word}"
+		includedCommandLineFlags=" --include ${word}"
 		if [ "$vflag" = "on" ]; then
         echo
         echo -n "Path included in oclint analysis is:$includedCommandLineFlags"
     fi
 		# Run OCLint with the right set of compiler options
-    runCommand no oclint-json-compilation-database -v $includedCommandLineFlags $excludedFromOCLint -- -rc LONG_LINE=$longLineThreshold -rc LONG_VARIABLE_NAME=$longVariableThreshold -rc TOO_MANY_METHODS=$methodCountThreshold -disable-rule UnusedMethodParameter -disable-rule AssignIvarOutsideAccessors -max-priority-1 $maxPriority -max-priority-2 $maxPriority -max-priority-3 $maxPriority -report-type pmd -o sonar-reports/$(echo $word | sed 's/\//_/g')-oclint.xml
+    runCommand no oclint-json-compilation-database -v $includedCommandLineFlags $excludedFromOCLint -- -rc LONG_LINE=$longLineThreshold -rc LONG_VARIABLE_NAME=$longVariableThreshold -rc TOO_MANY_METHODS=$methodCountThreshold -rc LONG_METHOD=$methodLinesThreshold -disable-rule UnusedMethodParameter -disable-rule AssignIvarOutsideAccessors -max-priority-1 $maxPriority -max-priority-2 $maxPriority -max-priority-3 $maxPriority -report-type pmd -o sonar-reports/$(echo $word | sed 's/\//_/g' | sed 's/\./a/g')-oclint.xml
 
 	done < tmpFileRunSonarSh
 	rm -rf tmpFileRunSonarSh
