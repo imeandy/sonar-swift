@@ -421,6 +421,7 @@ if [ "$oclint" = "on" ] && [ "$hasObjC" = "yes" ]; then
 	longVariableThreshold=30
 	methodCountThreshold=50
 	methodLinesThreshold=80
+	ncssThreshold=80
 
 	# Build the --include flags
 	currentDirectory=${PWD##*/}
@@ -444,7 +445,7 @@ if [ "$oclint" = "on" ] && [ "$hasObjC" = "yes" ]; then
         echo -n "Path included in oclint analysis is:$includedCommandLineFlags"
     fi
 		# Run OCLint with the right set of compiler options
-    runCommand no oclint-json-compilation-database -v $includedCommandLineFlags $excludedFromOCLint -- -rc LONG_LINE=$longLineThreshold -rc LONG_VARIABLE_NAME=$longVariableThreshold -rc TOO_MANY_METHODS=$methodCountThreshold -rc LONG_METHOD=$methodLinesThreshold -disable-rule UnusedMethodParameter -disable-rule AssignIvarOutsideAccessors -max-priority-1 $maxPriority -max-priority-2 $maxPriority -max-priority-3 $maxPriority -report-type pmd -o sonar-reports/$(echo $word | sed 's/\//_/g' | sed 's/\./a/g')-oclint.xml
+    runCommand no oclint-json-compilation-database -v $includedCommandLineFlags $excludedFromOCLint -- -rc LONG_LINE=$longLineThreshold -rc LONG_VARIABLE_NAME=$longVariableThreshold -rc TOO_MANY_METHODS=$methodCountThreshold -rc LONG_METHOD=$methodLinesThreshold -rc NCSS_METHOD=$ncssThreshold -disable-rule PreferEarlyExit -disable-rule UnusedMethodParameter -disable-rule AssignIvarOutsideAccessors -max-priority-1 $maxPriority -max-priority-2 $maxPriority -max-priority-3 $maxPriority -report-type pmd -o sonar-reports/$(echo $word | sed 's/\//_/g' | sed 's/\./a/g')-oclint.xml
 
 	done < tmpFileRunSonarSh
 	rm -rf tmpFileRunSonarSh
