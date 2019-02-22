@@ -425,7 +425,7 @@ if [ "$oclint" = "on" ] && [ "$hasObjC" = "yes" ]; then
 
 	# Build the --include flags
 	currentDirectory=${PWD##*/}
-	excludedFromOCLint = ""
+	excludedFromOCLint=""
 
 	if [ ! -z "$excludedPathsFromOCLint" -a "$excludedPathsFromOCLint" != " " ]; then
 			echo $excludedPathsFromOCLint | sed -n 1'p' | tr ',' '\n' > tmpFileRunSonarSh3
