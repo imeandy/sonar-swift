@@ -25,6 +25,10 @@
         </rule>
         <rule>
             <repositoryKey>OCLint</repositoryKey>
+            <key>compiler warning</key>
+        </rule>
+        <rule>
+            <repositoryKey>OCLint</repositoryKey>
             <key>collapsible if statements</key>
         </rule>
         <rule>
@@ -282,6 +286,14 @@
         <rule>
             <repositoryKey>OCLint</repositoryKey>
             <key>missing abstract method implementation</key>
+        </rule>
+        <rule>
+            <repositoryKey>OCLint</repositoryKey>
+            <key>compiler error</key>
+        </rule>
+        <rule>
+            <repositoryKey>OCLint</repositoryKey>
+            <key>avoid private static members</key>
         </rule>
     </rules>
 </profile>
