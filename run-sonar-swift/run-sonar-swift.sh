@@ -418,10 +418,10 @@ if [ "$oclint" = "on" ] && [ "$hasObjC" = "yes" ]; then
 	# Options
 	maxPriority=10000
   longLineThreshold=120
-	longVariableThreshold=30
+	longVariableThreshold=50
 	methodCountThreshold=50
 	methodLinesThreshold=80
-	ncssThreshold=80
+	ncssThreshold=100
 
 	# Build the --include flags
 	currentDirectory=${PWD##*/}
