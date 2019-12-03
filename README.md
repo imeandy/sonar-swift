@@ -36,7 +36,7 @@ In SonarQube under Quality Profiles the used Linter can be specified by selectin
 | Code coverage	|YES	    | Uses [slather](https://github.com/venmo/slather)			| Not Supported|
 
 
-### 0.4.3 CHANGELOG
+### 0.4.4 CHANGELOG
 
 ```Passed On MacOS 10.14.1```
 

@@ -106,6 +106,10 @@ public final class CoberturaReportParser {
                     Element element = (Element) node;
 
                     int lineId = Integer.parseInt(element.getAttribute(NUMBER));
+                    if (lineId <= 0) {
+                        continue;
+                    }
+
                     coverage.lineHits(lineId, Integer.parseInt(element.getAttribute(HITS)));
                     lineAdded = true;
 

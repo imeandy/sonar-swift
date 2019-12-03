@@ -1,10 +1,14 @@
 # _SonarQube Plugin for Swift_ Changelog
 
-##  v0.4.2
-- Fixed "rule does not exist" crash on Objective-C sensors
+##  v0.4.4
+
+- Fixed "line number 0" exception for test coverage
 
 ##  v0.4.3
 - Added support for SonarQube 7.3
+
+##  v0.4.2
+- Fixed "rule does not exist" crash on Objective-C sensors
 
 ##  v0.4.1
 - Fixed NPE on SquidSensor
